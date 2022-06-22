@@ -67,12 +67,11 @@ public class PlayerController {
         Specification<Player> filter = playerService.setFilterPlayerSpec(name, title, race, profession,
                 after, before, banned, minExperience, maxExperience, minLevel, maxLevel);
 
-        Page<Player> result = playerService.getAll(filter, PageRequest.of(0, 3, Sort.by("name") ));
+        Page<Player> result = playerService.getAll(filter, PageRequest.of(0, 60, Sort.by("name") ));
 
         Integer count = result.getContent().size();
 
         return count;
-
     }
 
     @PostMapping("/players")
