@@ -106,7 +106,7 @@ public class PlayerService {
             oldPlayer.setRace(newPlayer.getRace());
         if (newPlayer.getProfession()!= null)
             oldPlayer.setProfession(newPlayer.getProfession());
-
+//
         if (newPlayer.getBirthday()!=null){
             if ((newPlayer.getBirthday().getTime() > 0) &&
             !newPlayer.getBirthday().before(new Date(100,Calendar.JANUARY,1)) &&
@@ -121,12 +121,13 @@ public class PlayerService {
         if (newPlayer.getExperience()!=null){
             if (newPlayer.getExperience() <= 10000000 && newPlayer.getExperience() >= 0){
                 oldPlayer.setExperience(newPlayer.getExperience());
-                oldPlayer.setLevel(newPlayer.getCurrentLevel());
-                oldPlayer.setUntilNextLevel(newPlayer.nextLevel());
+                oldPlayer.setLevel(oldPlayer.getCurrentLevel());
+                oldPlayer.setUntilNextLevel(oldPlayer.nextLevel());
             }
             else
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+
         return new ResponseEntity<>(playerRepository.save(oldPlayer),HttpStatus.OK);
     }
 
